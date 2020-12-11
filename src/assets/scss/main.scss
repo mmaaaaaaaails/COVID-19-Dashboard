@@ -1,3 +1,8 @@
+@import './hamburger.scss';
+@import './color.scss';
+@import './extend.scss';
+@import './animation.scss';
+
 * {
     margin: 0;
     padding:0;
@@ -5,9 +10,261 @@
     box-sizing: border-box;
 }
 
-.test {
+body {
+    background: black;
+    height: 100%;
+}
+
+.wrapper {
+    margin: 0 auto;
+    padding: 0 40px;
+    max-width: 1200px;
+}
+
+.header {
+    background: $main-background;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+
+    &__block {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__logo {
+        height: 50px;
+        width: 50px;
+        background-image: url(/assets/img/covid.svg);
+        background-size: cover;
+
+        &:hover {
+            @extend %animation;
+        }
+    }
 
     &__title {
-        color: green;
+        @extend %title;
+    }
+}
+
+.main {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.cases {
+
+    margin-bottom: 10px;
+    height: 100%;
+
+    &__block {
+        width: 160px;
+        max-height: 70px;
+        background-color: $main-background;
+        margin-bottom: 5px;
+    }
+
+    &__title {
+        @extend %title;
+    }
+
+    &__number {
+        color: $cases-color;
+        @extend %number;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        padding-left: 5px;
+        margin-top: 20px;
+    }
+
+    &__item {
+        margin-bottom: 4px;
+    }
+
+    &__countries {
+        width: 160px;
+        max-height: 370px;
+        background-color: $main-background;
+        overflow: auto;
+
+    }
+
+    &__country {
+        color: $main-color;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.9);
+}
+
+.map {
+    height: 435px;
+    width: 500px;
+    background: $main-background;
+    margin-bottom: 10px;
+}
+
+.general {
+
+    display: flex;
+
+    &__death {
+        width: 200px;
+        max-height: 190px;
+        background-color: $main-background;
+        overflow: auto;
+        margin-right: 10px;
+    }
+
+    &__recovered {
+        width: 200px;
+        height: 190px;
+        background-color: $main-background;
+        overflow: auto;
+    }
+}
+
+.death {
+
+    &__title {
+        @extend %title;
+    }
+
+    &__amount {
+        text-align: center;
+        padding-top: 5px;
+        font-size: 26px;
+        color: $light-color
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        padding-left: 5px;
+        margin-top: 20px;
+    }
+
+    &__item {
+        margin-bottom: 4px;
+    }
+
+    &__number {
+        color: $light-color;
+        @extend %number;
+    }
+
+    &__country {
+        color: $light-color;
+        font-weight: 600;
+    }
+
+    &__end {
+        padding-left: 3px;
+        color: $main-color;
+        font-weight: 300;
+    }
+}
+
+
+.recovered {
+
+    &__title {
+        @extend %title;
+    }
+
+    &__subtitle {
+        text-align: center;
+        color: $light-color;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        padding-left: 5px;
+        margin-top: 20px;
+    }
+
+    &__item {
+        margin-bottom: 4px;
+    }
+
+    &__number {
+        color: $light-color;
+        @extend %number
+    }
+
+    &__country {
+        color: $light-color;
+        font-weight: 600;
+    }
+
+    &__end {
+        padding-left: 3px;
+        color: $main-color;
+        font-weight: 300;
+    }
+
+    &__amount {
+        color: $recovered-color;
+    }
+}
+
+.footer {
+
+    background: $main-background;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+
+    &__block {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    &__info {
+        text-decoration: none;
+        color: $main-color;
+
+        &:hover {
+            color: $light-color;
+            transition: .5s linear;
+        }
+    }
+}
+
+.icon-github {
+    position: relative;
+    cursor: pointer;
+
+    &::after {
+        content: "";
+        position: absolute;
+        background-image: url(/assets/img/github.svg);
+        background-size: cover;
+        width: 30px;
+        height: 30px;
+        top: -10px;
+        left: 15px;
+    }
+
+    &:hover::after {
+        @extend %animation;
     }
 }

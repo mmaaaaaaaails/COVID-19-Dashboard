@@ -1,7 +1,7 @@
 {
-  "name": "template",
+  "name": "codid-19",
   "version": "1.0.0",
-  "description": "task template",
+  "description": "task covid-19",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --open --config ./build/webpack.dev.conf.js",
