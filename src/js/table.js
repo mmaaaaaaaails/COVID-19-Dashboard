@@ -1,0 +1,61 @@
+const globalCases = document.querySelector(".cases__number");
+const globalDeaths = document.querySelector(".death__amount");
+const deathsTable = document.querySelector(".death__list");
+const recoveredTable = document.querySelector(".recovered__list");
+const casesTable = document.querySelector(".cases__list");
+const countries = [];
+const countryDeaths = [];
+const countryCases = [];
+const countriesRecovered = [];
+const countriesList = [];
+let data;
+
+async function setCases() {
+    const url = "https://api.covid19api.com/summary";
+    const res = await fetch (url);
+    if (res.ok) {
+        data = await res.json();
+        globalCases.textContent = data.Global.TotalConfirmed;
+        globalDeaths.textContent = data.Global.TotalDeaths;
+        fillTable();
+    } else alert("Error with API");
+}
+
+function fillTable() {
+    data.Countries.sort((a, b) => b.TotalConfirmed - a.TotalConfirmed);
+    for (let i = 0; i < data.Countries.length; i++) {
+        let countryDeath = document.createElement("div");
+        countryDeath.classList.add("death__item");
+        countryDeath.innerHTML = `<span class="death__number">
+                                      ${data.Countries[i].TotalDeaths} 
+                                      <span class="death__end">deaths</span>
+                                  </span>
+                                  <span class="death__country">${data.Countries[i].Country}</span>`;
+
+        let countryRecovered = document.createElement("div");
+        countryRecovered.classList.add("recovered__item");
+        countryRecovered.innerHTML = `<span class="recovered__number">${data.Countries[i].TotalConfirmed}
+                                          <span class="recovered__end">cases</span>
+                                          <span class="recovered__amount">
+                                              ${data.Countries[i].TotalRecovered} recovered
+                                          </span>
+                                      </span>
+                                      <span class="recovered__country">${data.Countries[i].Country}</span>`;
+
+        let countryCase = document.createElement("div");
+        countryCase.classList.add("cases__item");
+        countryCase.innerHTML = `<span class="cases__number">${data.Countries[i].TotalConfirmed}</span>
+                                  <span class="cases__country">${data.Countries[i].Country}</span>`;
+
+        deathsTable.appendChild(countryDeath);
+        recoveredTable.appendChild(countryRecovered);
+        casesTable.appendChild(countryCase);
+        countries.push(data.Countries[i].Country);
+        countryDeaths.push(data.Countries[i].TotalDeaths);
+        countryCases.push(data.Countries[i].TotalConfirmed);
+        countriesRecovered.push(data.Countries[i].TotalRecovered);
+        countriesList.push(countryCase);
+    }
+}
+
+setCases();
