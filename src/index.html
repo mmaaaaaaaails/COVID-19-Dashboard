@@ -41,24 +41,46 @@
     <main class="main">
         <section class="cases">
             <div class="cases__block">
+                <span class="cases__block--full"></span>
                 <h3 class="cases__title">Global Cases</h3>
                 <p class="cases__number"></p>
             </div>
             <div class="cases__countries">
-                <h3 class="cases__title">Cases by country</h3>
+                <span class="cases__full"></span>
+                <h3 class="cases__title">Cases by <p>country</p></h3>
+                <div class="cases__buttons">
+                    <button class="cases__button">Total</button>
+                    <button class="cases__button">for the last day</button>
+                    <button class="cases__button">per 100 000</button>
+                    <button class="cases__button">for the last day per 100 000</button>
+                </div>
                 <div class="cases__list"></div>
             </div>
         </section>
         <section class="map"></section>
         <section class="general">
             <div class="general__death">
+                <span class="death__full"></span>
                 <h3 class="death__title">Global Death</h3>
                 <p class="death__amount"></p>
+                <div class="death__buttons">
+                    <button class="death__button">Total</button>
+                    <button class="death__button">for the last day</button>
+                    <button class="death__button">per 100 000</button>
+                    <button class="death__button">for the last day per 100 000</button>
+                </div>
                 <div class="death__list"></div>
             </div>
             <div class="general__recovered">
+                <span class="recovered__full"></span>
                 <h3 class="recovered__title">Country</h3>
                 <p class="recovered__subtitle">Cases, recovered</p>
+                <div class="recovered__buttons">
+                    <button class="recovered__button">Total</button>
+                    <button class="recovered__button">for the last day</button>
+                    <button class="recovered__button">per 100 000</button>
+                    <button class="recovered__button">for the last day per 100 000</button>
+                </div>
                 <div class="recovered__list"></div>
             </div>
         </section>
@@ -78,5 +100,9 @@
             </div>
         </div>
     </footer>
+            <div class="modal hide">
+            <span class="modal__close">&times;</span>
+            <span class="modal__content"></span>
+        </div>
 </body>
 </html>

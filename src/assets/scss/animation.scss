@@ -24,3 +24,13 @@
         transform: translateX(0);
     }
 }
+
+@keyframes zoom {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}

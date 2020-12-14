@@ -1,11 +1,12 @@
 @import './hamburger.scss';
 @import './color.scss';
-@import './extend.scss';
+@import './mixin.scss';
 @import './animation.scss';
+@import './modal.scss';
 
 * {
     margin: 0;
-    padding:0;
+    padding: 0;
     font-family: 'Lato', sans-serif;
     box-sizing: border-box;
 }
@@ -39,12 +40,12 @@ body {
         background-size: cover;
 
         &:hover {
-            @extend %animation;
+            @include animation;
         }
     }
 
     &__title {
-        @extend %title;
+        @include title;
     }
 }
 
@@ -60,38 +61,78 @@ body {
     height: 100%;
 
     &__block {
-        width: 160px;
+        width: 202px;
         max-height: 70px;
         background-color: $main-background;
         margin-bottom: 5px;
+        border-radius: 5px;
+        position: relative;
+
+        &--full {
+            @include fullScreen;
+        }
     }
 
     &__title {
-        @extend %title;
+        @include title;
+        padding-bottom: 10px;
+
+        &--full {
+            color: $main-color;
+            text-align: center;
+            padding-top: 70px;
+            font-size: 40px;
+        }
     }
 
     &__number {
         color: $cases-color;
-        @extend %number;
+        @include number;
+
+        &--full {
+            font-size: 100px;
+            text-align: center;
+            font-weight: 600;
+            padding-top: 15px;
+            color: $cases-color;
+        }
+    }
+
+    &__button {
+
+        background: $cases-color linear-gradient(to left, transparent, transparent 50%, $light-color 50%);
+        @include button;
+
+        &:hover {
+            color: $cases-color;
+        }
+
     }
 
     &__list {
         display: flex;
         flex-direction: column;
         padding-left: 5px;
-        margin-top: 20px;
+        margin-top: 10px;
     }
 
     &__item {
         margin-bottom: 4px;
+        border-bottom: 1px solid blueviolet;
     }
 
     &__countries {
-        width: 160px;
-        max-height: 370px;
+        width: 202px;
+        height: 349px;
         background-color: $main-background;
         overflow: auto;
+        padding-left: 3px;
+        border-radius: 5px;
+        position: relative;
+    }
 
+    &__full {
+        @include fullScreen;
     }
 
     &__country {
@@ -115,7 +156,7 @@ body {
 
 .map {
     height: 435px;
-    width: 500px;
+    width: 450px;
     background: $main-background;
     margin-bottom: 10px;
 }
@@ -126,31 +167,55 @@ body {
 
     &__death {
         width: 200px;
-        max-height: 190px;
+        max-height: 350px;
         background-color: $main-background;
         overflow: auto;
         margin-right: 10px;
+        padding-left: 3px;
+        border-radius: 5px;
+        position: relative;
     }
 
     &__recovered {
         width: 200px;
-        height: 190px;
+        height: 350px;
         background-color: $main-background;
         overflow: auto;
+        padding-left: 3px;
+        border-radius: 5px;
+        position: relative;
     }
 }
 
 .death {
 
     &__title {
-        @extend %title;
+        @include title;
     }
 
     &__amount {
         text-align: center;
         padding-top: 5px;
         font-size: 26px;
-        color: $light-color
+        color: $light-color;
+        padding-bottom: 10px;
+
+        &--full {
+            font-size: 70px !important;
+            text-align: center;
+            padding-top: 5px;
+            font-size: 26px;
+            color: $light-color;
+        }
+    }
+
+    &__button {
+        background: black linear-gradient(to left, transparent, transparent 50%, $light-color 50%);
+        @include button;
+
+        &:hover {
+            color: black;
+        }
     }
 
     &__list {
@@ -162,11 +227,12 @@ body {
 
     &__item {
         margin-bottom: 4px;
+        border-bottom: 1px solid blueviolet;
     }
 
     &__number {
         color: $light-color;
-        @extend %number;
+        @include number;
     }
 
     &__country {
@@ -179,18 +245,38 @@ body {
         color: $main-color;
         font-weight: 300;
     }
+
+    &__full {
+        @include fullScreen;
+    }
 }
 
 
 .recovered {
 
     &__title {
-        @extend %title;
+        @include title;
     }
 
     &__subtitle {
         text-align: center;
         color: $light-color;
+        padding-bottom: 10px;
+
+        &--full {
+            font-size: 40px;
+            text-align: center;
+            color: $light-color;
+        }
+    }
+
+    &__button {
+        background: $recovered-color linear-gradient(to left, transparent, transparent 50%, $light-color 50%);
+        @include button;
+
+        &:hover {
+            color: $recovered-color;
+        }
     }
 
     &__list {
@@ -202,11 +288,12 @@ body {
 
     &__item {
         margin-bottom: 4px;
+        border-bottom: 1px solid blueviolet;
     }
 
     &__number {
         color: $light-color;
-        @extend %number
+        @include number
     }
 
     &__country {
@@ -222,6 +309,11 @@ body {
 
     &__amount {
         color: $recovered-color;
+    }
+
+    &__full {
+        @include fullScreen;
+
     }
 }
 
@@ -265,6 +357,6 @@ body {
     }
 
     &:hover::after {
-        @extend %animation;
+        @include animation;
     }
 }
