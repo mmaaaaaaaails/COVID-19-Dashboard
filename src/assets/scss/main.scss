@@ -1,362 +1,361 @@
-@import './hamburger.scss';
-@import './color.scss';
-@import './mixin.scss';
-@import './animation.scss';
-@import './modal.scss';
+@import "./hamburger.scss";
+@import "./color.scss";
+@import "./mixin.scss";
+@import "./animation.scss";
+@import "./modal.scss";
 
 * {
-    margin: 0;
-    padding: 0;
-    font-family: 'Lato', sans-serif;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", sans-serif;
+  box-sizing: border-box;
 }
 
 body {
-    background: black;
-    height: 100%;
+  background: black;
+  height: 100%;
 }
 
 .wrapper {
-    margin: 0 auto;
-    padding: 0 40px;
-    max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  max-width: 1200px;
 }
 
 .header {
-    background: $main-background;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+  background: $main-background;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 
-    &__block {
-        display: flex;
-        justify-content: space-between;
+  &__block {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    height: 50px;
+    width: 50px;
+    background-image: url(/assets/img/covid.svg);
+    background-size: cover;
+
+    &:hover {
+      @include animation;
     }
+  }
 
-    &__logo {
-        height: 50px;
-        width: 50px;
-        background-image: url(/assets/img/covid.svg);
-        background-size: cover;
-
-        &:hover {
-            @include animation;
-        }
-    }
-
-    &__title {
-        @include title;
-    }
+  &__title {
+    @include title;
+  }
 }
 
 .main {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .cases {
+  margin-bottom: 10px;
+  height: 100%;
 
-    margin-bottom: 10px;
-    height: 100%;
+  &__block {
+    width: 202px;
+    max-height: 70px;
+    background-color: $main-background;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    position: relative;
 
-    &__block {
-        width: 202px;
-        max-height: 70px;
-        background-color: $main-background;
-        margin-bottom: 5px;
-        border-radius: 5px;
-        position: relative;
-
-        &--full {
-            @include fullScreen;
-        }
+    &--full {
+      @include fullScreen;
     }
+  }
 
-    &__title {
-        @include title;
-        padding-bottom: 10px;
+  &__title {
+    @include title;
+    padding-bottom: 10px;
 
-        &--full {
-            color: $main-color;
-            text-align: center;
-            padding-top: 70px;
-            font-size: 40px;
-        }
+    &--full {
+      color: $main-color;
+      text-align: center;
+      padding-top: 70px;
+      font-size: 40px;
     }
+  }
 
-    &__number {
-        color: $cases-color;
-        @include number;
+  &__number {
+    color: $cases-color;
+    @include number;
 
-        &--full {
-            font-size: 100px;
-            text-align: center;
-            font-weight: 600;
-            padding-top: 15px;
-            color: $cases-color;
-        }
+    &--full {
+      font-size: 100px;
+      text-align: center;
+      font-weight: 600;
+      padding-top: 15px;
+      color: $cases-color;
     }
+  }
 
-    &__button {
+  &__button {
+    background: $cases-color
+      linear-gradient(to left, transparent, transparent 50%, $light-color 50%);
+    @include button;
 
-        background: $cases-color linear-gradient(to left, transparent, transparent 50%, $light-color 50%);
-        @include button;
-
-        &:hover {
-            color: $cases-color;
-        }
-
+    &:hover {
+      color: $cases-color;
     }
+  }
 
-    &__list {
-        display: flex;
-        flex-direction: column;
-        padding-left: 5px;
-        margin-top: 10px;
-    }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+    margin-top: 10px;
+  }
 
-    &__item {
-        margin-bottom: 4px;
-        border-bottom: 1px solid blueviolet;
-    }
+  &__item {
+    margin-bottom: 4px;
+    border-bottom: 1px solid blueviolet;
+  }
 
-    &__countries {
-        width: 202px;
-        height: 349px;
-        background-color: $main-background;
-        overflow: auto;
-        padding-left: 3px;
-        border-radius: 5px;
-        position: relative;
-    }
+  &__countries {
+    width: 202px;
+    height: 349px;
+    background-color: $main-background;
+    overflow: auto;
+    padding-left: 3px;
+    border-radius: 5px;
+    position: relative;
+  }
 
-    &__full {
-        @include fullScreen;
-    }
+  &__full {
+    @include fullScreen;
+  }
 
-    &__country {
-        color: $main-color;
-    }
+  &__country {
+    color: $main-color;
+  }
+
+  &__flag {
+    width: 20px;
+    height: 15px;
+  }
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-    border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.9);
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.9);
 }
 
 .map {
-    height: 435px;
-    width: 450px;
-    background: $main-background;
-    margin-bottom: 10px;
+  height: 435px;
+  width: 450px;
+  background: $main-background;
+  margin-bottom: 10px;
 }
 
 .general {
+  display: flex;
 
-    display: flex;
+  &__death {
+    width: 200px;
+    max-height: 350px;
+    background-color: $main-background;
+    overflow: auto;
+    margin-right: 10px;
+    padding-left: 3px;
+    border-radius: 5px;
+    position: relative;
+  }
 
-    &__death {
-        width: 200px;
-        max-height: 350px;
-        background-color: $main-background;
-        overflow: auto;
-        margin-right: 10px;
-        padding-left: 3px;
-        border-radius: 5px;
-        position: relative;
-    }
-
-    &__recovered {
-        width: 200px;
-        height: 350px;
-        background-color: $main-background;
-        overflow: auto;
-        padding-left: 3px;
-        border-radius: 5px;
-        position: relative;
-    }
+  &__recovered {
+    width: 200px;
+    height: 350px;
+    background-color: $main-background;
+    overflow: auto;
+    padding-left: 3px;
+    border-radius: 5px;
+    position: relative;
+  }
 }
 
 .death {
+  &__title {
+    @include title;
+  }
 
-    &__title {
-        @include title;
+  &__amount {
+    text-align: center;
+    padding-top: 5px;
+    font-size: 26px;
+    color: $light-color;
+    padding-bottom: 10px;
+
+    &--full {
+      font-size: 70px !important;
+      text-align: center;
+      padding-top: 5px;
+      font-size: 26px;
+      color: $light-color;
     }
+  }
 
-    &__amount {
-        text-align: center;
-        padding-top: 5px;
-        font-size: 26px;
-        color: $light-color;
-        padding-bottom: 10px;
+  &__button {
+    background: black
+      linear-gradient(to left, transparent, transparent 50%, $light-color 50%);
+    @include button;
 
-        &--full {
-            font-size: 70px !important;
-            text-align: center;
-            padding-top: 5px;
-            font-size: 26px;
-            color: $light-color;
-        }
+    &:hover {
+      color: black;
     }
+  }
 
-    &__button {
-        background: black linear-gradient(to left, transparent, transparent 50%, $light-color 50%);
-        @include button;
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+    margin-top: 20px;
+  }
 
-        &:hover {
-            color: black;
-        }
-    }
+  &__item {
+    margin-bottom: 4px;
+    border-bottom: 1px solid blueviolet;
+  }
 
-    &__list {
-        display: flex;
-        flex-direction: column;
-        padding-left: 5px;
-        margin-top: 20px;
-    }
+  &__number {
+    color: $light-color;
+    @include number;
+  }
 
-    &__item {
-        margin-bottom: 4px;
-        border-bottom: 1px solid blueviolet;
-    }
+  &__country {
+    color: $light-color;
+    font-weight: 600;
+  }
 
-    &__number {
-        color: $light-color;
-        @include number;
-    }
+  &__end {
+    padding-left: 3px;
+    color: $main-color;
+    font-weight: 300;
+  }
 
-    &__country {
-        color: $light-color;
-        font-weight: 600;
-    }
-
-    &__end {
-        padding-left: 3px;
-        color: $main-color;
-        font-weight: 300;
-    }
-
-    &__full {
-        @include fullScreen;
-    }
+  &__full {
+    @include fullScreen;
+  }
 }
 
-
 .recovered {
+  &__title {
+    @include title;
+  }
 
-    &__title {
-        @include title;
+  &__subtitle {
+    text-align: center;
+    color: $light-color;
+    padding-bottom: 10px;
+
+    &--full {
+      font-size: 40px;
+      text-align: center;
+      color: $light-color;
     }
+  }
 
-    &__subtitle {
-        text-align: center;
-        color: $light-color;
-        padding-bottom: 10px;
+  &__button {
+    background: $recovered-color
+      linear-gradient(to left, transparent, transparent 50%, $light-color 50%);
+    @include button;
 
-        &--full {
-            font-size: 40px;
-            text-align: center;
-            color: $light-color;
-        }
+    &:hover {
+      color: $recovered-color;
     }
+  }
 
-    &__button {
-        background: $recovered-color linear-gradient(to left, transparent, transparent 50%, $light-color 50%);
-        @include button;
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+    margin-top: 20px;
+  }
 
-        &:hover {
-            color: $recovered-color;
-        }
-    }
+  &__item {
+    margin-bottom: 4px;
+    border-bottom: 1px solid blueviolet;
+  }
 
-    &__list {
-        display: flex;
-        flex-direction: column;
-        padding-left: 5px;
-        margin-top: 20px;
-    }
+  &__number {
+    color: $light-color;
+    @include number;
+  }
 
-    &__item {
-        margin-bottom: 4px;
-        border-bottom: 1px solid blueviolet;
-    }
+  &__country {
+    color: $light-color;
+    font-weight: 600;
+  }
 
-    &__number {
-        color: $light-color;
-        @include number
-    }
+  &__end {
+    padding-left: 3px;
+    color: $main-color;
+    font-weight: 300;
+  }
 
-    &__country {
-        color: $light-color;
-        font-weight: 600;
-    }
+  &__amount {
+    color: $recovered-color;
+  }
 
-    &__end {
-        padding-left: 3px;
-        color: $main-color;
-        font-weight: 300;
-    }
-
-    &__amount {
-        color: $recovered-color;
-    }
-
-    &__full {
-        @include fullScreen;
-
-    }
+  &__full {
+    @include fullScreen;
+  }
 }
 
 .footer {
+  background: $main-background;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 20px;
 
-    background: $main-background;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-top: 20px;
+  &__block {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
 
-    &__block {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
+  &__info {
+    text-decoration: none;
+    color: $main-color;
+
+    &:hover {
+      color: $light-color;
+      transition: 0.5s linear;
     }
-
-    &__info {
-        text-decoration: none;
-        color: $main-color;
-
-        &:hover {
-            color: $light-color;
-            transition: .5s linear;
-        }
-    }
+  }
 }
 
 .icon-github {
-    position: relative;
-    cursor: pointer;
+  position: relative;
+  cursor: pointer;
 
-    &::after {
-        content: "";
-        position: absolute;
-        background-image: url(/assets/img/github.svg);
-        background-size: cover;
-        width: 30px;
-        height: 30px;
-        top: -10px;
-        left: 15px;
-    }
+  &::after {
+    content: "";
+    position: absolute;
+    background-image: url(/assets/img/github.svg);
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    top: -10px;
+    left: 15px;
+  }
 
-    &:hover::after {
-        @include animation;
-    }
+  &:hover::after {
+    @include animation;
+  }
 }

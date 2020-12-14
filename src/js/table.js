@@ -1,24 +1,26 @@
 import {
     showGlobalCases, showCases, showDeath, showRecovered,
 } from './modal';
+import { populationData } from './populationData';
+import { addEvents } from './buttons';
 
 const globalCases = document.querySelector('.cases__number');
 const globalDeaths = document.querySelector('.death__amount');
 const deathsTable = document.querySelector('.death__list');
 const recoveredTable = document.querySelector('.recovered__list');
 const casesTable = document.querySelector('.cases__list');
-const countries = [];
-const countryDeaths = [];
-const countryCases = [];
-const countriesRecovered = [];
 const countriesList = [];
 const countryDeathList = [];
 const countryRecoveredList = [];
 let data;
 
 function fillTable() {
-    data.Countries.sort((a, b) => b.TotalConfirmed - a.TotalConfirmed);
+    populationData.sort((a, b) => a.name.localeCompare(b.name));
+    data.Countries.sort((a, b) => a.Country.localeCompare(b.Country));
     for (let i = 0; i < data.Countries.length; i += 1) {
+        data.Countries[i].flag = populationData[i].flag;
+        data.Countries[i].population = populationData[i].population;
+
         const countryDeath = document.createElement('div');
         countryDeath.classList.add('death__item');
         countryDeath.innerHTML = `<span class='death__number'>
@@ -26,6 +28,7 @@ function fillTable() {
                                     <span class='death__end'>deaths</span>
                                     </span>
                                 <span class='death__country'>${data.Countries[i].Country}</span>`;
+
         const countryRecovered = document.createElement('div');
         countryRecovered.classList.add('recovered__item');
         countryRecovered.innerHTML = `<span class='recovered__number'>${data.Countries[i].TotalConfirmed}
@@ -39,15 +42,12 @@ function fillTable() {
         const countryCase = document.createElement('div');
         countryCase.classList.add('cases__item');
         countryCase.innerHTML = `<span class='cases__number'>${data.Countries[i].TotalConfirmed}</span>
-                                <span class='cases__country'>${data.Countries[i].Country}</span>`;
+                                <span class='cases__country'>${data.Countries[i].Country}</span>
+                                <img class='cases__flag' src='${data.Countries[i].flag}' alt='flag'>`;
 
         deathsTable.appendChild(countryDeath);
         recoveredTable.appendChild(countryRecovered);
         casesTable.appendChild(countryCase);
-        countries.push(data.Countries[i].Country);
-        countryDeaths.push(data.Countries[i].TotalDeaths);
-        countryCases.push(data.Countries[i].TotalConfirmed);
-        countriesRecovered.push(data.Countries[i].TotalRecovered);
         countriesList.push(countryCase);
         countryRecoveredList.push(countryRecovered);
         countryDeathList.push(countryDeath);
@@ -66,6 +66,7 @@ async function setCases() {
         showDeath();
         showRecovered();
         showGlobalCases();
+        addEvents();
     } else console.log('Error with API');
 }
 
@@ -76,4 +77,7 @@ export {
     countriesList,
     countryRecoveredList,
     countryDeathList,
+    casesTable,
+    recoveredTable,
+    deathsTable,
 };
