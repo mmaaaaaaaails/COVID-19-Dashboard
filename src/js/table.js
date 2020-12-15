@@ -20,7 +20,9 @@ function fillTable() {
     for (let i = 0; i < data.Countries.length; i += 1) {
         data.Countries[i].flag = populationData[i].flag;
         data.Countries[i].population = populationData[i].population;
-
+    }
+    data.Countries.sort((a, b) => b.TotalConfirmed - a.TotalConfirmed);
+    for (let i = 0; i < data.Countries.length; i += 1) {
         const countryDeath = document.createElement('div');
         countryDeath.classList.add('death__item');
         countryDeath.innerHTML = `<span class='death__number'>

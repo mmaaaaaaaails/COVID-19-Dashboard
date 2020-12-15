@@ -30,6 +30,7 @@ const universalButtons = [universalTotal, universalNew, universalRelative, newUn
 function addEvents() {
     universalCases.addEventListener('click', () => {
         universalProperty = 'cases';
+        data.Countries.sort((a, b) => b.TotalConfirmed - a.TotalConfirmed);
         universalButtons.forEach((button) => {
             button.classList = 'cases__button';
         });
@@ -42,6 +43,7 @@ function addEvents() {
 
     universalDeaths.addEventListener('click', () => {
         universalProperty = 'deaths';
+        data.Countries.sort((a, b) => b.TotalDeaths - a.TotalDeaths);
         universalButtons.forEach((button) => {
             button.classList = 'death__button';
         });
@@ -54,6 +56,7 @@ function addEvents() {
 
     universalRecovered.addEventListener('click', () => {
         universalProperty = 'recovered';
+        data.Countries.sort((a, b) => b.TotalRecovered - a.TotalRecovered);
         universalButtons.forEach((button) => {
             button.classList = 'recovered__button';
         });
@@ -66,8 +69,13 @@ function addEvents() {
 
     universalTotal.addEventListener('click', () => {
         let universal = 'TotalConfirmed';
-        if (universalProperty === 'recovered') universal = 'TotalRecovered';
-        if (universalProperty === 'deaths') universal = 'TotalDeaths';
+        if (universalProperty === 'recovered') {
+            universal = 'TotalRecovered';
+        }
+        if (universalProperty === 'deaths') {
+            universal = 'TotalDeaths';
+        }
+        data.Countries.sort((a, b) => b[universal] - a[universal]);
         for (let i = 0; i < universalList.length; i += 1) {
             universalList[i].innerHTML = `<span class='cases__number'>${data.Countries[i][universal]}</span>
                                         <span class='cases__country'>${data.Countries[i].Country}</span>
@@ -77,8 +85,13 @@ function addEvents() {
 
     universalNew.addEventListener('click', () => {
         let universal = 'NewConfirmed';
-        if (universalProperty === 'recovered') universal = 'NewRecovered';
-        if (universalProperty === 'deaths') universal = 'NewDeaths';
+        if (universalProperty === 'recovered') {
+            universal = 'NewRecovered';
+        }
+        if (universalProperty === 'deaths') {
+            universal = 'NewDeaths';
+        }
+        data.Countries.sort((a, b) => b[universal] - a[universal]);
         for (let i = 0; i < universalList.length; i += 1) {
             universalList[i].innerHTML = `<span class='cases__number'>${data.Countries[i][universal]}</span>
                                         <span class='cases__country'>${data.Countries[i].Country}</span>
@@ -88,8 +101,14 @@ function addEvents() {
 
     universalRelative.addEventListener('click', () => {
         let universal = 'TotalConfirmed';
-        if (universalProperty === 'recovered') universal = 'TotalRecovered';
-        if (universalProperty === 'deaths') universal = 'TotalDeaths';
+        if (universalProperty === 'recovered') {
+            universal = 'TotalRecovered';
+        }
+        if (universalProperty === 'deaths') {
+            universal = 'TotalDeaths';
+        }
+        data.Countries.sort((a, b) => b[universal] * (100000 / b.population)
+            - a[universal] * (100000 / a.population));
         for (let i = 0; i < universalList.length; i += 1) {
             const relativeFormula = data.Countries[i][universal]
             * (100000 / data.Countries[i].population);
@@ -101,8 +120,14 @@ function addEvents() {
 
     newUniversalRelative.addEventListener('click', () => {
         let universal = 'NewConfirmed';
-        if (universalProperty === 'recovered') universal = 'NewRecovered';
-        if (universalProperty === 'deaths') universal = 'NewDeaths';
+        if (universalProperty === 'recovered') {
+            universal = 'NewRecovered';
+        }
+        if (universalProperty === 'deaths') {
+            universal = 'NewDeaths';
+        }
+        data.Countries.sort((a, b) => b[universal] * (100000 / b.population)
+            - a[universal] * (100000 / a.population));
         for (let i = 0; i < universalList.length; i += 1) {
             const relativeFormula = data.Countries[i][universal]
             * (100000 / data.Countries[i].population);
