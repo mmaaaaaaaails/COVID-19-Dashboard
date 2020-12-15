@@ -2,6 +2,7 @@ import {
     data,
     countryDeathList,
     countryRecoveredList,
+    universalList,
 } from './table';
 
 const deathsTotal = document.querySelector('#total_death');
@@ -14,7 +15,103 @@ const recoveredNew = document.querySelector('#new_recovered');
 const recoveredRelative = document.querySelector('#relative_recovered');
 const newRecoveredRelative = document.querySelector('#relative_new_recovered');
 
+const universalCases = document.querySelector('#universal_cases');
+const universalDeaths = document.querySelector('#universal_deaths');
+const universalRecovered = document.querySelector('#universal_recovered');
+let universalProperty = 'cases';
+
+const universalTotal = document.querySelector('#total_cases');
+const universalNew = document.querySelector('#new_cases');
+const universalRelative = document.querySelector('#relative_cases');
+const newUniversalRelative = document.querySelector('#relative_new_cases');
+
+const universalButtons = [universalTotal, universalNew, universalRelative, newUniversalRelative];
+
 function addEvents() {
+    universalCases.addEventListener('click', () => {
+        universalProperty = 'cases';
+        universalButtons.forEach((button) => {
+            button.classList = 'cases__button';
+        });
+        for (let i = 0; i < universalList.length; i += 1) {
+            universalList[i].innerHTML = `<span class='cases__number'>${data.Countries[i].TotalConfirmed}</span>
+                                        <span class='cases__country'>${data.Countries[i].Country}</span>
+                                        <img class='cases__flag' src='${data.Countries[i].flag}' alt='flag'>`;
+        }
+    });
+
+    universalDeaths.addEventListener('click', () => {
+        universalProperty = 'deaths';
+        universalButtons.forEach((button) => {
+            button.classList = 'death__button';
+        });
+        for (let i = 0; i < universalList.length; i += 1) {
+            universalList[i].innerHTML = `<span class='cases__number'>${data.Countries[i].TotalDeaths}</span>
+                                        <span class='cases__country'>${data.Countries[i].Country}</span>
+                                        <img class='cases__flag' src='${data.Countries[i].flag}' alt='flag'>`;
+        }
+    });
+
+    universalRecovered.addEventListener('click', () => {
+        universalProperty = 'recovered';
+        universalButtons.forEach((button) => {
+            button.classList = 'recovered__button';
+        });
+        for (let i = 0; i < universalList.length; i += 1) {
+            universalList[i].innerHTML = `<span class='cases__number'>${data.Countries[i].TotalRecovered}</span>
+                                        <span class='cases__country'>${data.Countries[i].Country}</span>
+                                        <img class='cases__flag' src='${data.Countries[i].flag}' alt='flag'>`;
+        }
+    });
+
+    universalTotal.addEventListener('click', () => {
+        let universal = 'TotalConfirmed';
+        if (universalProperty === 'recovered') universal = 'TotalRecovered';
+        if (universalProperty === 'deaths') universal = 'TotalDeaths';
+        for (let i = 0; i < universalList.length; i += 1) {
+            universalList[i].innerHTML = `<span class='cases__number'>${data.Countries[i][universal]}</span>
+                                        <span class='cases__country'>${data.Countries[i].Country}</span>
+                                        <img class='cases__flag' src='${data.Countries[i].flag}' alt='flag'>`;
+        }
+    });
+
+    universalNew.addEventListener('click', () => {
+        let universal = 'NewConfirmed';
+        if (universalProperty === 'recovered') universal = 'NewRecovered';
+        if (universalProperty === 'deaths') universal = 'NewDeaths';
+        for (let i = 0; i < universalList.length; i += 1) {
+            universalList[i].innerHTML = `<span class='cases__number'>${data.Countries[i][universal]}</span>
+                                        <span class='cases__country'>${data.Countries[i].Country}</span>
+                                        <img class='cases__flag' src='${data.Countries[i].flag}' alt='flag'>`;
+        }
+    });
+
+    universalRelative.addEventListener('click', () => {
+        let universal = 'TotalConfirmed';
+        if (universalProperty === 'recovered') universal = 'TotalRecovered';
+        if (universalProperty === 'deaths') universal = 'TotalDeaths';
+        for (let i = 0; i < universalList.length; i += 1) {
+            const relativeFormula = data.Countries[i][universal]
+            * (100000 / data.Countries[i].population);
+            universalList[i].innerHTML = `<span class='cases__number'>${relativeFormula.toFixed(1)}</span>
+                                        <span class='cases__country'>${data.Countries[i].Country}</span>
+                                        <img class='cases__flag' src='${data.Countries[i].flag}' alt='flag'>`;
+        }
+    });
+
+    newUniversalRelative.addEventListener('click', () => {
+        let universal = 'NewConfirmed';
+        if (universalProperty === 'recovered') universal = 'NewRecovered';
+        if (universalProperty === 'deaths') universal = 'NewDeaths';
+        for (let i = 0; i < universalList.length; i += 1) {
+            const relativeFormula = data.Countries[i][universal]
+            * (100000 / data.Countries[i].population);
+            universalList[i].innerHTML = `<span class='cases__number'>${relativeFormula.toFixed(1)}</span>
+                                        <span class='cases__country'>${data.Countries[i].Country}</span>
+                                        <img class='cases__flag' src='${data.Countries[i].flag}' alt='flag'>`;
+        }
+    });
+
     deathsTotal.addEventListener('click', () => {
         for (let i = 0; i < countryDeathList.length; i += 1) {
             countryDeathList[i].innerHTML = `<span class='death__number'>

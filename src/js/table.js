@@ -9,7 +9,7 @@ const globalDeaths = document.querySelector('.death__amount');
 const deathsTable = document.querySelector('.death__list');
 const recoveredTable = document.querySelector('.recovered__list');
 const casesTable = document.querySelector('.cases__list');
-const countriesList = [];
+const universalList = [];
 const countryDeathList = [];
 const countryRecoveredList = [];
 let data;
@@ -48,7 +48,7 @@ function fillTable() {
         deathsTable.appendChild(countryDeath);
         recoveredTable.appendChild(countryRecovered);
         casesTable.appendChild(countryCase);
-        countriesList.push(countryCase);
+        universalList.push(countryCase);
         countryRecoveredList.push(countryRecovered);
         countryDeathList.push(countryDeath);
     }
@@ -74,7 +74,7 @@ setCases();
 
 export {
     data,
-    countriesList,
+    universalList,
     countryRecoveredList,
     countryDeathList,
     casesTable,

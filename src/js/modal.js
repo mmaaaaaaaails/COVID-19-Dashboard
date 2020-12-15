@@ -1,6 +1,6 @@
 import {
     data,
-    countriesList,
+    universalList,
     countryRecoveredList,
     countryDeathList,
     casesTable,
@@ -32,8 +32,8 @@ function showCases() {
         modalContent.innerHTML = '<h3 class=\'cases__title\'>Cases by country</h3>';
         modalContent.classList.add('cases__countries');
         modal.classList.remove('hide');
-        for (let i = 0; i < countriesList.length; i += 1) {
-            modalContent.append(countriesList[i]);
+        for (let i = 0; i < universalList.length; i += 1) {
+            modalContent.append(universalList[i]);
         }
     });
 }
@@ -69,8 +69,8 @@ function showRecovered() {
 function closeModalCross() {
     modalClose.addEventListener('click', () => {
         modal.classList.add('hide');
-        for (let i = 0; i < countriesList.length; i += 1) {
-            casesTable.append(countriesList[i]);
+        for (let i = 0; i < universalList.length; i += 1) {
+            casesTable.append(universalList[i]);
             deathsTable.append(countryDeathList[i]);
             recoveredTable.append(countryRecoveredList[i]);
         }
