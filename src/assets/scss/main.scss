@@ -97,6 +97,10 @@ body {
     }
   }
 
+  &__buttons {
+    padding-top: 10px;
+  }
+
   &__button {
     background: $cases-color
       linear-gradient(to left, transparent, transparent 50%, $light-color 50%);
@@ -127,6 +131,7 @@ body {
     padding-left: 3px;
     border-radius: 5px;
     position: relative;
+    padding-top: 20px
   }
 
   &__full {
