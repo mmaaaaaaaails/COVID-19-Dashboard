@@ -13,7 +13,6 @@
 
 body {
   background: black;
-  height: 100%;
 }
 
 .wrapper {
@@ -53,6 +52,7 @@ body {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  min-height: calc(100vh - 60px);
 }
 
 .cases {
@@ -170,22 +170,28 @@ body {
 }
 
 .general {
-  display: flex;
+  display: grid;
+  grid-template-columns: 200px 200px;
+  grid-column-gap: 0px;
+
 
   &__death {
-    width: 200px;
-    max-height: 350px;
+    max-width: 200px;
+    max-height: 260px;
     background-color: $main-background;
     overflow: auto;
     margin-right: 10px;
     padding-left: 3px;
     border-radius: 5px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+
   }
 
   &__recovered {
-    width: 200px;
-    height: 350px;
+    max-width: 200px;
+    max-height: 268px;
     background-color: $main-background;
     overflow: auto;
     padding-left: 3px;
@@ -326,7 +332,6 @@ body {
   background: $main-background;
   padding-top: 20px;
   padding-bottom: 20px;
-  margin-top: 20px;
 
   &__block {
     display: flex;
