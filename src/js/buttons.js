@@ -5,6 +5,8 @@ import {
     universalList,
 } from './table';
 
+import { searchProperty } from './search';
+
 const deathsTotal = document.querySelector('#total_death');
 const deathsNew = document.querySelector('#new_death');
 const deathsRelative = document.querySelector('#relative_death');
@@ -27,10 +29,33 @@ const newUniversalRelative = document.querySelector('#relative_new_cases');
 
 const universalButtons = [universalTotal, universalNew, universalRelative, newUniversalRelative];
 
+function sortAll() {
+    for (let i = 0; i < countryDeathList.length; i += 1) {
+        countryDeathList[i].innerHTML = `<span class='death__number'>
+                                            ${data.Countries[i].TotalDeaths}
+                                            <span class='death__end'>deaths</span>
+                                            </span>
+                                        <span class='death__country'>${data.Countries[i].Country}</span>`;
+        countryRecoveredList[i].innerHTML = `<span class='recovered__number'>
+                                                ${data.Countries[i].TotalConfirmed}
+                                                <span class='recovered__end'>cases</span>
+                                                <span class='recovered__amount'>
+                                                    ${data.Countries[i].TotalRecovered} recovered
+                                                </span>
+                                            </span>
+                                            <span class='recovered__country'>
+                                                ${data.Countries[i].Country}
+                                            </span>`;
+    }
+}
+
 function addEvents() {
     universalCases.addEventListener('click', () => {
         universalProperty = 'cases';
-        data.Countries.sort((a, b) => b.TotalConfirmed - a.TotalConfirmed);
+        if (searchProperty === false) {
+            data.Countries.sort((a, b) => b.TotalConfirmed - a.TotalConfirmed);
+            sortAll();
+        }
         universalButtons.forEach((button) => {
             button.classList = 'cases__button';
         });
@@ -43,7 +68,10 @@ function addEvents() {
 
     universalDeaths.addEventListener('click', () => {
         universalProperty = 'deaths';
-        data.Countries.sort((a, b) => b.TotalDeaths - a.TotalDeaths);
+        if (searchProperty === false) {
+            data.Countries.sort((a, b) => b.TotalDeaths - a.TotalDeaths);
+            sortAll();
+        }
         universalButtons.forEach((button) => {
             button.classList = 'death__button';
         });
@@ -56,7 +84,10 @@ function addEvents() {
 
     universalRecovered.addEventListener('click', () => {
         universalProperty = 'recovered';
-        data.Countries.sort((a, b) => b.TotalRecovered - a.TotalRecovered);
+        if (searchProperty === false) {
+            data.Countries.sort((a, b) => b.TotalRecovered - a.TotalRecovered);
+            sortAll();
+        }
         universalButtons.forEach((button) => {
             button.classList = 'recovered__button';
         });
@@ -75,7 +106,10 @@ function addEvents() {
         if (universalProperty === 'deaths') {
             universal = 'TotalDeaths';
         }
-        data.Countries.sort((a, b) => b[universal] - a[universal]);
+        if (searchProperty === false) {
+            data.Countries.sort((a, b) => b[universal] - a[universal]);
+            sortAll();
+        }
         for (let i = 0; i < universalList.length; i += 1) {
             universalList[i].innerHTML = `<span class='cases__number'>${data.Countries[i][universal]}</span>
                                         <span class='cases__country'>${data.Countries[i].Country}</span>
@@ -91,7 +125,10 @@ function addEvents() {
         if (universalProperty === 'deaths') {
             universal = 'NewDeaths';
         }
-        data.Countries.sort((a, b) => b[universal] - a[universal]);
+        if (searchProperty === false) {
+            data.Countries.sort((a, b) => b[universal] - a[universal]);
+            sortAll();
+        }
         for (let i = 0; i < universalList.length; i += 1) {
             universalList[i].innerHTML = `<span class='cases__number'>${data.Countries[i][universal]}</span>
                                         <span class='cases__country'>${data.Countries[i].Country}</span>
@@ -107,8 +144,11 @@ function addEvents() {
         if (universalProperty === 'deaths') {
             universal = 'TotalDeaths';
         }
-        data.Countries.sort((a, b) => b[universal] * (100000 / b.population)
+        if (searchProperty === false) {
+            data.Countries.sort((a, b) => b[universal] * (100000 / b.population)
             - a[universal] * (100000 / a.population));
+            sortAll();
+        }
         for (let i = 0; i < universalList.length; i += 1) {
             const relativeFormula = data.Countries[i][universal]
             * (100000 / data.Countries[i].population);
@@ -126,8 +166,11 @@ function addEvents() {
         if (universalProperty === 'deaths') {
             universal = 'NewDeaths';
         }
-        data.Countries.sort((a, b) => b[universal] * (100000 / b.population)
+        if (searchProperty === false) {
+            data.Countries.sort((a, b) => b[universal] * (100000 / b.population)
             - a[universal] * (100000 / a.population));
+            sortAll();
+        }
         for (let i = 0; i < universalList.length; i += 1) {
             const relativeFormula = data.Countries[i][universal]
             * (100000 / data.Countries[i].population);

@@ -3,6 +3,7 @@ import {
 } from './modal';
 import { populationData } from './populationData';
 import { addEvents } from './buttons';
+import { searchCountry } from './search';
 
 const globalCases = document.querySelector('.cases__number');
 const globalDeaths = document.querySelector('.death__amount');
@@ -69,6 +70,7 @@ async function setCases() {
         showRecovered();
         showGlobalCases();
         addEvents();
+        searchCountry();
     } else console.log('Error with API');
 }
 
