@@ -12,18 +12,24 @@ let searchProperty = false;
 
 function setProperty() {
     searchProperty = true;
-    universalList.forEach((item) => item.style.display = 'none');
-    countryDeathList.forEach((item) => item.style.display = 'none');
-    countryRecoveredList.forEach((item) => item.style.display = 'none');
+    universalList.forEach((item) => {
+        item.classList.add('hide');
+    });
+    countryDeathList.forEach((item) => {
+        item.classList.add('hide');
+    });
+    countryRecoveredList.forEach((item) => {
+        item.classList.add('hide');
+    });
 }
 
 function searchCountry() {
     for (let i = 0; i < data.Countries.length; i += 1) {
         if (searchArea.value.toLowerCase() === data.Countries[i].Country.toLowerCase()) {
             setProperty();
-            universalList[i].style.display = 'block';
-            countryDeathList[i].style.display = 'block';
-            countryRecoveredList[i].style.display = 'block';
+            universalList[i].classList.remove('hide');
+            countryDeathList[i].classList.remove('hide');
+            countryRecoveredList[i].classList.remove('hide');
         }
     }
 }
@@ -49,9 +55,9 @@ function chooseCountry() {
     for (let i = 0; i < data.Countries.length; i += 1) {
         universalList[i].addEventListener('click', () => {
             setProperty();
-            universalList[i].style.display = 'block';
-            countryDeathList[i].style.display = 'block';
-            countryRecoveredList[i].style.display = 'block';
+            universalList[i].classList.remove('hide');
+            countryDeathList[i].classList.remove('hide');
+            countryRecoveredList[i].classList.remove('hide');
         });
     }
 }
