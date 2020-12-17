@@ -23,9 +23,9 @@ function searchCountry() {
                 universalList.forEach((item) => item.style.display = 'none');
                 countryDeathList.forEach((item) => item.style.display = 'none');
                 countryRecoveredList.forEach((item) => item.style.display = 'none');
-                universalList[i].style.display = 'flex';
-                countryDeathList[i].style.display = 'flex';
-                countryRecoveredList[i].style.display = 'flex';
+                universalList[i].style.display = 'block';
+                countryDeathList[i].style.display = 'block';
+                countryRecoveredList[i].style.display = 'block';
             }
         }
     });
