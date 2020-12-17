@@ -3,6 +3,7 @@
 @import "./mixin.scss";
 @import "./animation.scss";
 @import "./modal.scss";
+@import './search.scss';
 
 * {
   margin: 0;
@@ -30,6 +31,7 @@ body {
   &__block {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   &__logo {
