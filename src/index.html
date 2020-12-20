@@ -68,7 +68,7 @@
             </div>
         </section>
         <section class="map">
-            <div id = "map" style = "width:500px; height:435px;"></div>
+            <div id = "map" class="map" style ="width:400px; height:435px;"></div>
         </section>
         <section class="general">
             <div class="general__death">
@@ -95,7 +95,10 @@
                 </div>
                 <div class="recovered__list"></div>
             </div>
-            <canvas id="chart" width="370" height="270"></canvas>
+            <div class="graph">
+                <span class="graph__full"></span>
+                <canvas id="chart" class="graph__chart"></canvas>
+            </div>
         </section>
     </main>
     <footer class="footer">
@@ -117,5 +120,11 @@
             <span class="modal__close">&times;</span>
             <span class="modal__content"></span>
         </div>
+        <script src="http://labs.easyblog.it/maps/leaflet-search/examples/data/restaurant.geojson.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet-src.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet-search@2.3.7/dist/leaflet-search.src.css" />
+<script src="https://unpkg.com/leaflet-search@2.3.7/dist/leaflet-search.src.js"></script>
 </body>
 </html>

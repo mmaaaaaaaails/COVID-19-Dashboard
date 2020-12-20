@@ -1,10 +1,16 @@
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
+import 'leaflet-fullscreen/dist/Leaflet.fullscreen';
 
 const mapOptions = {
     center: [53.385044, 27.486671],
     zoom: 5,
     worldCopyJump: true,
+    fullscreenControl: true,
+    fullscreenControlOptions: {
+        position: 'topleft',
+    },
 };
 
 const map = new L.map('map', mapOptions);
@@ -20,20 +26,13 @@ const markerOptions = {
     draggable: true,
 };
 
-const marker = L.marker([53.385044, 27.486671], markerOptions);
+let marker = L.marker([53.385044, 27.486671], markerOptions).bindPopup('Location');
 marker.addTo(map);
-marker.bindPopup('Location').openPopup();
-marker.on('mouseover', () => {
-    marker.openPopup();
-});
-
-const circle = L.circle([55.056287, 30.07572], 25000, {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-});
-circle.addTo(map);
-
 map.on('click', (e) => {
-    new L.Marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+    if (marker !== null) {
+        map.removeLayer(marker);
+    }
+    marker = L.marker(e.latlng).addTo(map);
 });
+
+map.invalidateSize();

@@ -1,6 +1,8 @@
 import Chart from 'chart.js';
 
 const ctx = document.querySelector('#chart').getContext('2d');
+ctx.canvas.width = 400;
+ctx.canvas.height = 270;
 const chartConfig = {
     type: 'bar',
     data: {
@@ -26,6 +28,7 @@ const chartConfig = {
             }],
         },
         responsive: false,
+        maintainAspectRatio: false,
     },
 };
 
@@ -44,3 +47,8 @@ const user = {
 };
 chartConfig.data.datasets.push(user);
 chart.update();
+
+export {
+    chartConfig,
+    chart,
+};

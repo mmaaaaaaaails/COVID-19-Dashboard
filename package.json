@@ -56,6 +56,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "leaflet": "^1.7.1"
+    "leaflet": "^1.7.1",
+    "leaflet-fullscreen": "^1.0.2"
   }
 }

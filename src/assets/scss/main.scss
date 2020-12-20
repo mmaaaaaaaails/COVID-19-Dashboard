@@ -3,7 +3,8 @@
 @import "./mixin.scss";
 @import "./animation.scss";
 @import "./modal.scss";
-@import './search.scss';
+@import "./search.scss";
+@import "./graph.scss";
 
 * {
   margin: 0;
@@ -173,7 +174,7 @@ body {
 
 .map {
   height: 435px;
-  width: 450px;
+
   margin-bottom: 10px;
 }
 

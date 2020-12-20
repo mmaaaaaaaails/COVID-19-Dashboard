@@ -3,6 +3,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 require('babel-polyfill');
+require('leaflet/dist/images/marker-icon-2x.png');
+require('leaflet/dist/images/marker-icon.png');
+require('leaflet/dist/images/marker-shadow.png');
 
 const PATHS = {
     src: path.join(__dirname, '../src'),

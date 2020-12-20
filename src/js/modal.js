@@ -8,6 +8,8 @@ import {
     deathsTable,
 } from './table';
 
+import { chart } from './graph';
+
 const casesBlockFull = document.querySelector('.cases__block--full');
 const casesFull = document.querySelector('.cases__full');
 const deathFull = document.querySelector('.death__full');
@@ -78,6 +80,12 @@ function closeModalCross() {
 }
 
 closeModalCross();
+
+const graphFull = document.querySelector('.graph__full');
+graphFull.addEventListener('click', () => {
+    modal.classList.remove('hide');
+    console.log(chart);
+});
 
 export {
     showGlobalCases,
