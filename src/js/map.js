@@ -3,6 +3,10 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
 import 'leaflet-fullscreen/dist/Leaflet.fullscreen';
 
+require('leaflet/dist/images/marker-icon-2x.png');
+require('leaflet/dist/images/marker-icon.png');
+require('leaflet/dist/images/marker-shadow.png');
+
 const mapOptions = {
     center: [53.385044, 27.486671],
     zoom: 5,
