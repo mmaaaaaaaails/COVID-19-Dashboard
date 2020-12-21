@@ -22,7 +22,6 @@
         &--full {
             color: $main-color;
             text-align: center;
-            padding-top: 70px;
             font-size: 40px;
         }
     }
@@ -38,6 +37,11 @@
             padding-top: 15px;
             color: $cases-color;
         }
+    }
+
+    &__map {
+        background-image: url(/assets/img/map.jpg);
+        background-size: cover;
     }
 
     &__buttons {

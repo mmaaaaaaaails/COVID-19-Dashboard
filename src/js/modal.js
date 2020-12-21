@@ -35,6 +35,7 @@ const modalClose = document.querySelector('.modal__close');
 function showGlobalCases() {
     casesBlockFull.addEventListener('click', () => {
         modal.classList.remove('hide');
+        modalContent.classList.add('cases__map');
         modalContent.innerHTML = `
             <h3 class="cases__title--full">Global Cases</h3>
             <p class="cases__number--full">${data.Global.TotalConfirmed}</p>
@@ -45,7 +46,7 @@ function showGlobalCases() {
 function showCases() {
     casesFull.addEventListener('click', () => {
         modalContent.innerHTML = '<h3 class=\'cases__title\'>Cases by country</h3>';
-        modalContent.classList.add('cases__countries');
+        modalContent.classList.add('cases__countries', 'cases__map');
         modal.classList.remove('hide');
         for (let i = 0; i < universalList.length; i += 1) {
             modalContent.append(universalList[i]);
@@ -59,7 +60,7 @@ function showDeath() {
             <h3 class="death__title">Global Death</h3>
             <p class="death__amount--full">${data.Global.TotalDeaths}</p>
             `;
-        modalContent.classList.add('cases__countries');
+        modalContent.classList.add('cases__countries', 'cases__map');
         modal.classList.remove('hide');
         for (let i = 0; i < countryDeathList.length; i += 1) {
             modalContent.append(countryDeathList[i]);
@@ -74,7 +75,7 @@ function showRecovered() {
             <p class="recovered__subtitle--full">Cases, recovered</p>
         `;
         modal.classList.remove('hide');
-        modalContent.classList.add('cases__countries');
+        modalContent.classList.add('cases__countries', 'cases__map');
         for (let i = 0; i < countryRecoveredList.length; i += 1) {
             modalContent.append(countryRecoveredList[i]);
         }

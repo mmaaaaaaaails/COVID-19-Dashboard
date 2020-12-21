@@ -4,7 +4,7 @@ const menu = document.querySelector('.menu');
 function openMenuLevel() {
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('change');
-        menu.classList.add('menu__open');
+        menu.classList.add('menu__open', 'cases__map');
     });
 }
 
