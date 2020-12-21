@@ -3,7 +3,7 @@
     cursor: pointer;
     padding-top: 14px;
     position: relative;
-    z-index: 20;
+    z-index: 1002;
 
     &__line-one, &__line-two, &__line-three {
         width: 35px;
@@ -41,7 +41,7 @@
     top: 0;
     right: -400px;
     transition: right .5s;
-    z-index: 15;
+    z-index: 1001;
 
     &__lists {
         list-style: none;

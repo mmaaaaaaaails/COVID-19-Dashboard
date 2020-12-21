@@ -15,6 +15,19 @@ const casesFull = document.querySelector('.cases__full');
 const deathFull = document.querySelector('.death__full');
 const recoveredFull = document.querySelector('.recovered__full');
 
+const popup = document.createElement('div');
+popup.className = 'modal hide';
+document.body.append(popup);
+
+const popupContent = document.createElement('div');
+popupContent.className = 'modal__content';
+popup.append(popupContent);
+
+const popupClose = document.createElement('span');
+popupClose.className = 'modal__close';
+popupClose.innerHTML = '&times;';
+popup.append(popupClose);
+
 const modal = document.querySelector('.modal');
 const modalContent = document.querySelector('.modal__content');
 const modalClose = document.querySelector('.modal__close');

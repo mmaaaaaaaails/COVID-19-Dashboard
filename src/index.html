@@ -67,38 +67,38 @@
                 <div class="cases__list"></div>
             </div>
         </section>
-        <section class="map">
-            <div id = "map" class="map" style ="width:400px; height:435px;"></div>
-        </section>
-        <section class="general">
-            <div class="general__death">
-                <span class="death__full"></span>
-                <h3 class="death__title">Global Death</h3>
-                <p class="death__amount"></p>
-                <div class="death__buttons">
-                    <button class="death__button" id="total_death">Total</button>
-                    <button class="death__button" id="new_death">for the last day</button>
-                    <button class="death__button" id="relative_death">per 100 000</button>
-                    <button class="death__button" id="relative_new_death">for the last day per 100 000</button>
-                </div>
-                <div class="death__list"></div>
-            </div>
-            <div class="general__recovered">
-                <span class="recovered__full"></span>
-                <h3 class="recovered__title">Country</h3>
-                <p class="recovered__subtitle">Cases, recovered</p>
-                <div class="recovered__buttons">
-                    <button class="recovered__button" id="total_recovered">Total</button>
-                    <button class="recovered__button" id="new_recovered">for the last day</button>
-                    <button class="recovered__button" id="relative_recovered">per 100 000</button>
-                    <button class="recovered__button" id="relative_new_recovered">for the last day per 100 000</button>
-                </div>
-                <div class="recovered__list"></div>
+        <section class="interactive">
+            <div class="map">
+                <div id="map" class="map"></div>
             </div>
             <div class="graph">
                 <span class="graph__full"></span>
-                <canvas id="chart" class="graph__chart"></canvas>
+                <canvas id="chart" class="graph__chart" style="border-radius: 10px;"></canvas>
             </div>
+        </section>
+        <section class="death">
+            <span class="death__full"></span>
+            <h3 class="death__title">Global Death</h3>
+            <p class="death__amount"></p>
+            <div class="death__buttons">
+                <button class="death__button" id="total_death">Total</button>
+                <button class="death__button" id="new_death">for the last day</button>
+                <button class="death__button" id="relative_death">per 100 000</button>
+                <button class="death__button" id="relative_new_death">for the last day per 100 000</button>
+            </div>
+            <div class="death__list"></div>
+        </section>
+        <section class="recovered">
+            <span class="recovered__full"></span>
+            <h3 class="recovered__title">Country</h3>
+            <p class="recovered__subtitle">Cases, recovered</p>
+            <div class="recovered__buttons">
+                <button class="recovered__button" id="total_recovered">Total</button>
+                <button class="recovered__button" id="new_recovered">for the last day</button>
+                <button class="recovered__button" id="relative_recovered">per 100 000</button>
+                <button class="recovered__button" id="relative_new_recovered">for the last day per 100 000</button>
+            </div>
+            <div class="recovered__list"></div>
         </section>
     </main>
     <footer class="footer">
@@ -106,7 +106,7 @@
             <div class="footer__block">
                 <div class="footer__rss">
                     <a href="https://rs.school/js/" class="footer__info">RS School 2020q3</a>
-                    <span class="icon-github"></span>
+                    <span class="footer__icon"></span>
                 </div>
                 <div class="footer__author">
                     <a href="https://github.com/ivan-scherbuk" class="footer__info">Ivan Scherbuk</a>
@@ -116,15 +116,5 @@
             </div>
         </div>
     </footer>
-        <div class="modal hide">
-            <span class="modal__close">&times;</span>
-            <span class="modal__content"></span>
-        </div>
-        <script src="http://labs.easyblog.it/maps/leaflet-search/examples/data/restaurant.geojson.js"></script>
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet-src.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/leaflet-search@2.3.7/dist/leaflet-search.src.css" />
-<script src="https://unpkg.com/leaflet-search@2.3.7/dist/leaflet-search.src.js"></script>
 </body>
 </html>
