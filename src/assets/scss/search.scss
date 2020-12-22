@@ -41,7 +41,8 @@
         cursor: pointer;
 
         &:hover {
-            @include animation;
+            transition: .3s linear;
+            transform: scale(1.2);
         }
     }
 

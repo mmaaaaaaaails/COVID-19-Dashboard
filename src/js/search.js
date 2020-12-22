@@ -63,4 +63,4 @@ function chooseCountry() {
     }
 }
 
-export { chooseCountry, searchProperty };
+export { chooseCountry, searchProperty, searchArea };
