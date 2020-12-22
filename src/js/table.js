@@ -74,7 +74,10 @@ async function setCases() {
         addEvents();
         chooseCountry();
         addMap();
-    } else console.log('Error with API');
+    } else {
+        globalCases.textContent = 'Error with API';
+        globalDeaths.textContent = 'Error with API';
+    }
 }
 
 setCases();
