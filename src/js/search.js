@@ -1,5 +1,5 @@
 import {
-    data,
+    dataCountries,
     countryDeathList,
     countryRecoveredList,
     universalList,
@@ -24,9 +24,10 @@ function setProperty() {
 }
 
 function searchCountry() {
-    for (let i = 0; i < data.Countries.length; i += 1) {
-        if (searchArea.value.toLowerCase() === data.Countries[i].Country.toLowerCase()
-        || searchArea.value.toLowerCase() === data.Countries[i].Slug) {
+    for (let i = 0; i < dataCountries.length; i += 1) {
+        if (searchArea.value.toLowerCase() === dataCountries[i].country.toLowerCase()
+        || searchArea.value.toLowerCase() === dataCountries[i].countryInfo.iso2.toLowerCase()
+        || searchArea.value.toLowerCase() === dataCountries[i].countryInfo.iso3.toLowerCase()) {
             setProperty();
             universalList[i].classList.remove('hide');
             countryDeathList[i].classList.remove('hide');
@@ -53,7 +54,7 @@ function chooseCountry() {
 
     searchArea.addEventListener('keydown', checkEnter, false);
 
-    for (let i = 0; i < data.Countries.length; i += 1) {
+    for (let i = 0; i < dataCountries.length; i += 1) {
         universalList[i].addEventListener('click', () => {
             setProperty();
             universalList[i].classList.remove('hide');

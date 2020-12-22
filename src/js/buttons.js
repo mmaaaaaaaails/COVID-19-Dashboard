@@ -1,5 +1,5 @@
 import {
-    data,
+    dataCountries,
     countryDeathList,
     countryRecoveredList,
     universalList,
@@ -32,19 +32,19 @@ const universalButtons = [universalTotal, universalNew, universalRelative, newUn
 function sortAll() {
     for (let i = 0; i < countryDeathList.length; i += 1) {
         countryDeathList[i].innerHTML = `<span class='death__number'>
-                                            ${data.Countries[i].TotalDeaths}
+                                            ${dataCountries[i].deaths}
                                             <span class='death__end'>deaths</span>
                                             </span>
-                                        <span class='death__country'>${data.Countries[i].Country}</span>`;
+                                        <span class='death__country'>${dataCountries[i].country}</span>`;
         countryRecoveredList[i].innerHTML = `<span class='recovered__number'>
-                                                ${data.Countries[i].TotalConfirmed}
+                                                ${dataCountries[i].cases}
                                                 <span class='recovered__end'>cases</span>
                                                 <span class='recovered__amount'>
-                                                    ${data.Countries[i].TotalRecovered} recovered
+                                                    ${dataCountries[i].recovered} recovered
                                                 </span>
                                             </span>
                                             <span class='recovered__country'>
-                                                ${data.Countries[i].Country}
+                                                ${dataCountries[i].country}
                                             </span>`;
     }
 }
@@ -53,188 +53,188 @@ function addEvents() {
     universalCases.addEventListener('click', () => {
         universalProperty = 'cases';
         if (searchProperty === false) {
-            data.Countries.sort((a, b) => b.TotalConfirmed - a.TotalConfirmed);
+            dataCountries.sort((a, b) => b.cases - a.cases);
             sortAll();
         }
         universalButtons.forEach((button) => {
             button.classList = 'cases__button';
         });
         for (let i = 0; i < universalList.length; i += 1) {
-            universalList[i].innerHTML = `<span class='cases__number'>${data.Countries[i].TotalConfirmed}</span>
-                                        <span class='cases__country'>${data.Countries[i].Country}</span>
-                                        <img class='cases__flag' src='${data.Countries[i].flag}' alt='flag'>`;
+            universalList[i].innerHTML = `<span class='cases__number'>${dataCountries[i].cases}</span>
+                                        <span class='cases__country'>${dataCountries[i].country}</span>
+                                        <img class='cases__flag' src='${dataCountries[i].countryInfo.flag}' alt='flag'>`;
         }
     });
 
     universalDeaths.addEventListener('click', () => {
         universalProperty = 'deaths';
         if (searchProperty === false) {
-            data.Countries.sort((a, b) => b.TotalDeaths - a.TotalDeaths);
+            dataCountries.sort((a, b) => b.deaths - a.deaths);
             sortAll();
         }
         universalButtons.forEach((button) => {
             button.classList = 'death__button';
         });
         for (let i = 0; i < universalList.length; i += 1) {
-            universalList[i].innerHTML = `<span class='cases__number'>${data.Countries[i].TotalDeaths}</span>
-                                        <span class='cases__country'>${data.Countries[i].Country}</span>
-                                        <img class='cases__flag' src='${data.Countries[i].flag}' alt='flag'>`;
+            universalList[i].innerHTML = `<span class='cases__number'>${dataCountries[i].deaths}</span>
+                                        <span class='cases__country'>${dataCountries[i].country}</span>
+                                        <img class='cases__flag' src='${dataCountries[i].countryInfo.flag}' alt='flag'>`;
         }
     });
 
     universalRecovered.addEventListener('click', () => {
         universalProperty = 'recovered';
         if (searchProperty === false) {
-            data.Countries.sort((a, b) => b.TotalRecovered - a.TotalRecovered);
+            dataCountries.sort((a, b) => b.recovered - a.recovered);
             sortAll();
         }
         universalButtons.forEach((button) => {
             button.classList = 'recovered__button';
         });
         for (let i = 0; i < universalList.length; i += 1) {
-            universalList[i].innerHTML = `<span class='cases__number'>${data.Countries[i].TotalRecovered}</span>
-                                        <span class='cases__country'>${data.Countries[i].Country}</span>
-                                        <img class='cases__flag' src='${data.Countries[i].flag}' alt='flag'>`;
+            universalList[i].innerHTML = `<span class='cases__number'>${dataCountries[i].recovered}</span>
+                                        <span class='cases__country'>${dataCountries[i].country}</span>
+                                        <img class='cases__flag' src='${dataCountries[i].countryInfo.flag}' alt='flag'>`;
         }
     });
 
     universalTotal.addEventListener('click', () => {
-        let universal = 'TotalConfirmed';
+        let universal = 'cases';
         if (universalProperty === 'recovered') {
-            universal = 'TotalRecovered';
+            universal = 'recovered';
         }
         if (universalProperty === 'deaths') {
-            universal = 'TotalDeaths';
+            universal = 'deaths';
         }
         if (searchProperty === false) {
-            data.Countries.sort((a, b) => b[universal] - a[universal]);
+            dataCountries.sort((a, b) => b[universal] - a[universal]);
             sortAll();
         }
         for (let i = 0; i < universalList.length; i += 1) {
-            universalList[i].innerHTML = `<span class='cases__number'>${data.Countries[i][universal]}</span>
-                                        <span class='cases__country'>${data.Countries[i].Country}</span>
-                                        <img class='cases__flag' src='${data.Countries[i].flag}' alt='flag'>`;
+            universalList[i].innerHTML = `<span class='cases__number'>${dataCountries[i][universal]}</span>
+                                        <span class='cases__country'>${dataCountries[i].country}</span>
+                                        <img class='cases__flag' src='${dataCountries[i].countryInfo.flag}' alt='flag'>`;
         }
     });
 
     universalNew.addEventListener('click', () => {
-        let universal = 'NewConfirmed';
+        let universal = 'todayCases';
         if (universalProperty === 'recovered') {
-            universal = 'NewRecovered';
+            universal = 'todayRecovered';
         }
         if (universalProperty === 'deaths') {
-            universal = 'NewDeaths';
+            universal = 'todayDeaths';
         }
         if (searchProperty === false) {
-            data.Countries.sort((a, b) => b[universal] - a[universal]);
+            dataCountries.sort((a, b) => b[universal] - a[universal]);
             sortAll();
         }
         for (let i = 0; i < universalList.length; i += 1) {
-            universalList[i].innerHTML = `<span class='cases__number'>${data.Countries[i][universal]}</span>
-                                        <span class='cases__country'>${data.Countries[i].Country}</span>
-                                        <img class='cases__flag' src='${data.Countries[i].flag}' alt='flag'>`;
+            universalList[i].innerHTML = `<span class='cases__number'>${dataCountries[i][universal]}</span>
+                                        <span class='cases__country'>${dataCountries[i].country}</span>
+                                        <img class='cases__flag' src='${dataCountries[i].countryInfo.flag}' alt='flag'>`;
         }
     });
 
     universalRelative.addEventListener('click', () => {
-        let universal = 'TotalConfirmed';
+        let universal = 'cases';
         if (universalProperty === 'recovered') {
-            universal = 'TotalRecovered';
+            universal = 'recovered';
         }
         if (universalProperty === 'deaths') {
-            universal = 'TotalDeaths';
+            universal = 'deaths';
         }
         if (searchProperty === false) {
-            data.Countries.sort((a, b) => b[universal] * (100000 / b.population)
+            dataCountries.sort((a, b) => b[universal] * (100000 / b.population)
             - a[universal] * (100000 / a.population));
             sortAll();
         }
         for (let i = 0; i < universalList.length; i += 1) {
-            const relativeFormula = data.Countries[i][universal]
-            * (100000 / data.Countries[i].population);
+            const relativeFormula = +(dataCountries[i][universal]
+            * (100000 / dataCountries[i].population));
             universalList[i].innerHTML = `<span class='cases__number'>${relativeFormula.toFixed(1)}</span>
-                                        <span class='cases__country'>${data.Countries[i].Country}</span>
-                                        <img class='cases__flag' src='${data.Countries[i].flag}' alt='flag'>`;
+                                        <span class='cases__country'>${dataCountries[i].country}</span>
+                                        <img class='cases__flag' src='${dataCountries[i].countryInfo.flag}' alt='flag'>`;
         }
     });
 
     newUniversalRelative.addEventListener('click', () => {
-        let universal = 'NewConfirmed';
+        let universal = 'todayCases';
         if (universalProperty === 'recovered') {
-            universal = 'NewRecovered';
+            universal = 'todayRecovered';
         }
         if (universalProperty === 'deaths') {
-            universal = 'NewDeaths';
+            universal = 'todayDeaths';
         }
         if (searchProperty === false) {
-            data.Countries.sort((a, b) => b[universal] * (100000 / b.population)
+            dataCountries.sort((a, b) => b[universal] * (100000 / b.population)
             - a[universal] * (100000 / a.population));
             sortAll();
         }
         for (let i = 0; i < universalList.length; i += 1) {
-            const relativeFormula = data.Countries[i][universal]
-            * (100000 / data.Countries[i].population);
+            const relativeFormula = dataCountries[i][universal]
+            * (100000 / dataCountries[i].population);
             universalList[i].innerHTML = `<span class='cases__number'>${relativeFormula.toFixed(1)}</span>
-                                        <span class='cases__country'>${data.Countries[i].Country}</span>
-                                        <img class='cases__flag' src='${data.Countries[i].flag}' alt='flag'>`;
+                                        <span class='cases__country'>${dataCountries[i].country}</span>
+                                        <img class='cases__flag' src='${dataCountries[i].countryInfo.flag}' alt='flag'>`;
         }
     });
 
     deathsTotal.addEventListener('click', () => {
         for (let i = 0; i < countryDeathList.length; i += 1) {
             countryDeathList[i].innerHTML = `<span class='death__number'>
-                                                ${data.Countries[i].TotalDeaths}
+                                                ${dataCountries[i].deaths}
                                                 <span class='death__end'>deaths</span>
                                                 </span>
-                                            <span class='death__country'>${data.Countries[i].Country}</span>`;
+                                            <span class='death__country'>${dataCountries[i].country}</span>`;
         }
     });
 
     deathsNew.addEventListener('click', () => {
         for (let i = 0; i < countryDeathList.length; i += 1) {
             countryDeathList[i].innerHTML = `<span class='death__number'>
-                                                ${data.Countries[i].NewDeaths}
+                                                ${dataCountries[i].todayDeaths}
                                                 <span class='death__end'>deaths</span>
                                                 </span>
-                                            <span class='death__country'>${data.Countries[i].Country}</span>`;
+                                            <span class='death__country'>${dataCountries[i].country}</span>`;
         }
     });
 
     deathsRelative.addEventListener('click', () => {
         for (let i = 0; i < countryDeathList.length; i += 1) {
-            const relativeFormula = data.Countries[i].TotalDeaths
-            * (100000 / data.Countries[i].population);
+            const relativeFormula = dataCountries[i].deaths
+            * (100000 / dataCountries[i].population);
             countryDeathList[i].innerHTML = `<span class='death__number'>
                                                 ${relativeFormula.toFixed(1)}
                                                 <span class='death__end'>deaths</span>
                                                 </span>
-                                            <span class='death__country'>${data.Countries[i].Country}</span>`;
+                                            <span class='death__country'>${dataCountries[i].country}</span>`;
         }
     });
 
     newDeathsRelative.addEventListener('click', () => {
         for (let i = 0; i < countryDeathList.length; i += 1) {
-            const relativeFormula = data.Countries[i].NewDeaths
-            * (100000 / data.Countries[i].population);
+            const relativeFormula = dataCountries[i].todayDeaths
+            * (100000 / dataCountries[i].population);
             countryDeathList[i].innerHTML = `<span class='death__number'>
                                                 ${relativeFormula.toFixed(1)}
                                                 <span class='death__end'>deaths</span>
                                                 </span>
-                                            <span class='death__country'>${data.Countries[i].Country}</span>`;
+                                            <span class='death__country'>${dataCountries[i].country}</span>`;
         }
     });
 
     recoveredTotal.addEventListener('click', () => {
         for (let i = 0; i < countryRecoveredList.length; i += 1) {
             countryRecoveredList[i].innerHTML = `<span class='recovered__number'>
-                                                    ${data.Countries[i].TotalConfirmed}
+                                                    ${dataCountries[i].cases}
                                                     <span class='recovered__end'>cases</span>
                                                     <span class='recovered__amount'>
-                                                        ${data.Countries[i].TotalRecovered} recovered
+                                                        ${dataCountries[i].recovered} recovered
                                                     </span>
                                                 </span>
                                                 <span class='recovered__country'>
-                                                    ${data.Countries[i].Country}
+                                                    ${dataCountries[i].country}
                                                 </span>`;
         }
     });
@@ -242,46 +242,46 @@ function addEvents() {
     recoveredNew.addEventListener('click', () => {
         for (let i = 0; i < countryRecoveredList.length; i += 1) {
             countryRecoveredList[i].innerHTML = `<span class='recovered__number'>
-                                                    ${data.Countries[i].NewConfirmed}
+                                                    ${dataCountries[i].todayCases}
                                                     <span class='recovered__end'>cases</span>
                                                     <span class='recovered__amount'>
-                                                        ${data.Countries[i].NewRecovered} recovered
+                                                        ${dataCountries[i].todayRecovered} recovered
                                                     </span>
                                                 </span>
                                                 <span class='recovered__country'>
-                                                    ${data.Countries[i].Country}
+                                                    ${dataCountries[i].country}
                                                 </span>`;
         }
     });
 
     recoveredRelative.addEventListener('click', () => {
         for (let i = 0; i < countryRecoveredList.length; i += 1) {
-            const relativeFormula = 100000 / data.Countries[i].population;
+            const relativeFormula = 100000 / dataCountries[i].population;
             countryRecoveredList[i].innerHTML = `<span class='recovered__number'>
-                                                    ${(data.Countries[i].TotalConfirmed * relativeFormula).toFixed(1)}
+                                                    ${(dataCountries[i].cases * relativeFormula).toFixed(1)}
                                                     <span class='recovered__end'>cases</span>
                                                     <span class='recovered__amount'>
-                                                        ${(data.Countries[i].TotalRecovered * relativeFormula).toFixed(1)} recovered
+                                                        ${(dataCountries[i].recovered * relativeFormula).toFixed(1)} recovered
                                                     </span>
                                                 </span>
                                                 <span class='recovered__country'>
-                                                    ${data.Countries[i].Country}
+                                                    ${dataCountries[i].country}
                                                 </span>`;
         }
     });
 
     newRecoveredRelative.addEventListener('click', () => {
         for (let i = 0; i < countryRecoveredList.length; i += 1) {
-            const relativeFormula = 100000 / data.Countries[i].population;
+            const relativeFormula = 100000 / dataCountries[i].population;
             countryRecoveredList[i].innerHTML = `<span class='recovered__number'>
-                                                    ${(data.Countries[i].NewConfirmed * relativeFormula).toFixed(1)}
+                                                    ${(dataCountries[i].todayCases * relativeFormula).toFixed(1)}
                                                     <span class='recovered__end'>cases</span>
                                                     <span class='recovered__amount'>
-                                                        ${(data.Countries[i].NewRecovered * relativeFormula).toFixed(1)} recovered
+                                                        ${(dataCountries[i].todayRecovered * relativeFormula).toFixed(1)} recovered
                                                     </span>
                                                 </span>
                                                 <span class='recovered__country'>
-                                                    ${data.Countries[i].Country}
+                                                    ${dataCountries[i].country}
                                                 </span>`;
         }
     });

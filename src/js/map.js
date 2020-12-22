@@ -3,7 +3,7 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
 import 'leaflet-fullscreen/dist/Leaflet.fullscreen';
 import WorldData from 'geojson-world-map';
-import { data } from './table';
+import { dataCountries } from './table';
 
 require('leaflet/dist/images/marker-icon-2x.png');
 require('leaflet/dist/images/marker-icon.png');
@@ -59,27 +59,44 @@ function addMap() {
 
     function style(feature) {
         if (feature.properties.name === 'United States') {
-            feature.properties.name += ' of America';
+            feature.properties.name = 'USA';
         }
         if (feature.properties.name === 'Czech Rep.') {
-            feature.properties.name = 'Czech Republic';
+            feature.properties.name = 'Czechia';
         }
         if (feature.properties.name === 'Central African Rep.') {
             feature.properties.name = 'Central African Republic';
         }
         if (feature.properties.name === 'Dem. Rep. Congo') {
-            feature.properties.name = 'Congo (Kinshasa)';
+            feature.properties.name = 'DRC';
         }
         if (feature.properties.name === 'S. Sudan') {
             feature.properties.name = 'Sudan';
         }
-        if (feature.properties.name === 'Korea') {
-            feature.properties.name += ' (South)';
+        if (feature.properties.name === 'United Kingdom') {
+            feature.properties.name = 'UK';
         }
-        for (let i = 0; i < data.Countries.length; i += 1) {
-            if (data.Countries[i].Country === feature.properties.name
-            || data.Countries[i].Slug === feature.properties.name.toLowerCase()) {
-                feature.properties.density = data.Countries[i].TotalConfirmed;
+        if (feature.properties.name === 'Libya') {
+            feature.properties.name = 'Libyan Arab Jamahiriya';
+        }
+        if (feature.properties.name === 'Syria') {
+            feature.properties.name = 'Syrian Arab Republic';
+        }
+        if (feature.properties.name === 'Lao PDR') {
+            feature.properties.name = `Lao People's Democratic Republic`;
+        }
+        if (feature.properties.name === 'Korea') {
+            feature.properties.name = 'S. Korea';
+        }
+        if (feature.properties.name === 'W. Sahara') {
+            feature.properties.name = 'Western Sahara';
+        }
+        if (feature.properties.name === 'Bosnia and Herz.') {
+            feature.properties.name = 'Bosnia';
+        }
+        for (let i = 0; i < dataCountries.length; i += 1) {
+            if (dataCountries[i].country === feature.properties.name) {
+                feature.properties.density = dataCountries[i].cases;
             }
         }
         return {

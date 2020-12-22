@@ -1,5 +1,5 @@
 import {
-    data,
+    dataAll,
     universalList,
     countryRecoveredList,
     countryDeathList,
@@ -38,7 +38,7 @@ function showGlobalCases() {
         modalContent.classList.add('cases__map');
         modalContent.innerHTML = `
             <h3 class="cases__title--full">Global Cases</h3>
-            <p class="cases__number--full">${data.Global.TotalConfirmed}</p>
+            <p class="cases__number--full">${dataAll.cases}</p>
             `;
     });
 }
@@ -58,7 +58,7 @@ function showDeath() {
     deathFull.addEventListener('click', () => {
         modalContent.innerHTML = `
             <h3 class="death__title">Global Death</h3>
-            <p class="death__amount--full">${data.Global.TotalDeaths}</p>
+            <p class="death__amount--full">${dataAll.deaths}</p>
             `;
         modalContent.classList.add('cases__countries', 'cases__map');
         modal.classList.remove('hide');
