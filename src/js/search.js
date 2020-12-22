@@ -25,7 +25,8 @@ function setProperty() {
 
 function searchCountry() {
     for (let i = 0; i < data.Countries.length; i += 1) {
-        if (searchArea.value.toLowerCase() === data.Countries[i].Country.toLowerCase()) {
+        if (searchArea.value.toLowerCase() === data.Countries[i].Country.toLowerCase()
+        || searchArea.value.toLowerCase() === data.Countries[i].Slug) {
             setProperty();
             universalList[i].classList.remove('hide');
             countryDeathList[i].classList.remove('hide');

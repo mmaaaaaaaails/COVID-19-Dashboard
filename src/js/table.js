@@ -4,6 +4,7 @@ import {
 import { populationData } from './populationData';
 import { addEvents } from './buttons';
 import { chooseCountry } from './search';
+import { addMap } from './map';
 
 const globalCases = document.querySelector('.cases__number');
 const globalDeaths = document.querySelector('.death__amount');
@@ -71,6 +72,7 @@ async function setCases() {
         showGlobalCases();
         addEvents();
         chooseCountry();
+        addMap();
     } else console.log('Error with API');
 }
 
