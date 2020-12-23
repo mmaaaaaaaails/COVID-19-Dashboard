@@ -4,6 +4,7 @@ import {
 import { addEvents } from './buttons';
 import { chooseCountry } from './search';
 import { addMap } from './map';
+import { addGraph } from './graph';
 
 const globalCases = document.querySelector('.cases__number');
 const globalDeaths = document.querySelector('.death__amount');
@@ -15,6 +16,7 @@ const countryDeathList = [];
 const countryRecoveredList = [];
 let dataAll;
 let dataCountries;
+let dataHistorical;
 
 function fillTable() {
     dataCountries.sort((a, b) => b.cases - a.cases);
@@ -61,9 +63,11 @@ function fillTable() {
 async function setCases() {
     const resAll = await fetch('https://disease.sh/v3/covid-19/all');
     const resCountries = await fetch('https://disease.sh/v3/covid-19/countries');
+    const resHistorical = await fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=all');
     if (resCountries.ok) {
         dataAll = await resAll.json();
         dataCountries = await resCountries.json();
+        dataHistorical = await resHistorical.json();
         globalCases.textContent = dataAll.cases;
         globalDeaths.textContent = dataAll.deaths;
         fillTable();
@@ -74,6 +78,7 @@ async function setCases() {
         addEvents();
         chooseCountry();
         addMap();
+        addGraph();
     } else {
         globalCases.textContent = 'Error with API';
         globalDeaths.textContent = 'Error with API';
@@ -85,6 +90,7 @@ setCases();
 export {
     dataAll,
     dataCountries,
+    dataHistorical,
     universalList,
     countryRecoveredList,
     countryDeathList,
