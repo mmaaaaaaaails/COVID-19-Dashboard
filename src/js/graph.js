@@ -1,5 +1,5 @@
 import Chart from 'chart.js';
-import { dataHistorical } from './table'
+import { dataHistorical } from './table';
 
 function addGraph() {
     const ctx = document.querySelector('#chart').getContext('2d');
