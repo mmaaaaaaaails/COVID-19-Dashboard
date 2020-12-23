@@ -30,24 +30,24 @@ function fillTable() {
         const countryDeath = document.createElement('div');
         countryDeath.classList.add('death__item');
         countryDeath.innerHTML = `<span class='death__number'>
-                                    ${dataCountries[i].deaths}
+                                    ${dataCountries[i].deaths.toLocaleString('ru-RU')}
                                     <span class='death__end'>deaths</span>
                                     </span>
                                 <span class='death__country'>${dataCountries[i].country}</span>`;
 
         const countryRecovered = document.createElement('div');
         countryRecovered.classList.add('recovered__item');
-        countryRecovered.innerHTML = `<span class='recovered__number'>${dataCountries[i].cases}
+        countryRecovered.innerHTML = `<span class='recovered__number'>${dataCountries[i].cases.toLocaleString('ru-RU')}
                                         <span class='recovered__end'>cases</span>
                                         <span class='recovered__amount'>
-                                            ${dataCountries[i].recovered} recovered
+                                            ${dataCountries[i].recovered.toLocaleString('ru-RU')} recovered
                                         </span>
                                     </span>
                                     <span class='recovered__country'>${dataCountries[i].country}</span>`;
 
         const countryCase = document.createElement('div');
         countryCase.classList.add('cases__item');
-        countryCase.innerHTML = `<span class='cases__number'>${dataCountries[i].cases}</span>
+        countryCase.innerHTML = `<span class='cases__number'>${dataCountries[i].cases.toLocaleString('ru-RU')}</span>
                                 <span class='cases__country'>${dataCountries[i].country}</span>
                                 <img class='cases__flag' src='${dataCountries[i].countryInfo.flag}' alt='flag'>`;
 
