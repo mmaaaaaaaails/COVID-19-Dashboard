@@ -32,15 +32,15 @@ const universalButtons = [universalTotal, universalNew, universalRelative, newUn
 function sortAll() {
     for (let i = 0; i < countryDeathList.length; i += 1) {
         countryDeathList[i].innerHTML = `<span class='death__number'>
-                                            ${dataCountries[i].deaths}
+                                            ${dataCountries[i].deaths.toLocaleString('ru-RU')}
                                             <span class='death__end'>deaths</span>
                                             </span>
                                         <span class='death__country'>${dataCountries[i].country}</span>`;
         countryRecoveredList[i].innerHTML = `<span class='recovered__number'>
-                                                ${dataCountries[i].cases}
+                                                ${dataCountries[i].cases.toLocaleString('ru-RU')}
                                                 <span class='recovered__end'>cases</span>
                                                 <span class='recovered__amount'>
-                                                    ${dataCountries[i].recovered} recovered
+                                                    ${dataCountries[i].recovered.toLocaleString('ru-RU')} recovered
                                                 </span>
                                             </span>
                                             <span class='recovered__country'>
@@ -60,7 +60,7 @@ function addEvents() {
             button.classList = 'cases__button';
         });
         for (let i = 0; i < universalList.length; i += 1) {
-            universalList[i].innerHTML = `<span class='cases__number'>${dataCountries[i].cases}</span>
+            universalList[i].innerHTML = `<span class='cases__number'>${dataCountries[i].cases.toLocaleString('ru-RU')}</span>
                                         <span class='cases__country'>${dataCountries[i].country}</span>
                                         <img class='cases__flag' src='${dataCountries[i].countryInfo.flag}' alt='flag'>`;
         }
@@ -76,7 +76,7 @@ function addEvents() {
             button.classList = 'death__button';
         });
         for (let i = 0; i < universalList.length; i += 1) {
-            universalList[i].innerHTML = `<span class='cases__number'>${dataCountries[i].deaths}</span>
+            universalList[i].innerHTML = `<span class='cases__number'>${dataCountries[i].deaths.toLocaleString('ru-RU')}</span>
                                         <span class='cases__country'>${dataCountries[i].country}</span>
                                         <img class='cases__flag' src='${dataCountries[i].countryInfo.flag}' alt='flag'>`;
         }
@@ -92,7 +92,7 @@ function addEvents() {
             button.classList = 'recovered__button';
         });
         for (let i = 0; i < universalList.length; i += 1) {
-            universalList[i].innerHTML = `<span class='cases__number'>${dataCountries[i].recovered}</span>
+            universalList[i].innerHTML = `<span class='cases__number'>${dataCountries[i].recovered.toLocaleString('ru-RU')}</span>
                                         <span class='cases__country'>${dataCountries[i].country}</span>
                                         <img class='cases__flag' src='${dataCountries[i].countryInfo.flag}' alt='flag'>`;
         }
@@ -111,7 +111,7 @@ function addEvents() {
             sortAll();
         }
         for (let i = 0; i < universalList.length; i += 1) {
-            universalList[i].innerHTML = `<span class='cases__number'>${dataCountries[i][universal]}</span>
+            universalList[i].innerHTML = `<span class='cases__number'>${dataCountries[i][universal].toLocaleString('ru-RU')}</span>
                                         <span class='cases__country'>${dataCountries[i].country}</span>
                                         <img class='cases__flag' src='${dataCountries[i].countryInfo.flag}' alt='flag'>`;
         }
@@ -130,7 +130,7 @@ function addEvents() {
             sortAll();
         }
         for (let i = 0; i < universalList.length; i += 1) {
-            universalList[i].innerHTML = `<span class='cases__number'>${dataCountries[i][universal]}</span>
+            universalList[i].innerHTML = `<span class='cases__number'>${dataCountries[i][universal].toLocaleString('ru-RU')}</span>
                                         <span class='cases__country'>${dataCountries[i].country}</span>
                                         <img class='cases__flag' src='${dataCountries[i].countryInfo.flag}' alt='flag'>`;
         }
@@ -150,8 +150,8 @@ function addEvents() {
             sortAll();
         }
         for (let i = 0; i < universalList.length; i += 1) {
-            const relativeFormula = +(dataCountries[i][universal]
-            * (100000 / dataCountries[i].population));
+            const relativeFormula = dataCountries[i][universal]
+            * (100000 / dataCountries[i].population);
             universalList[i].innerHTML = `<span class='cases__number'>${relativeFormula.toFixed(1)}</span>
                                         <span class='cases__country'>${dataCountries[i].country}</span>
                                         <img class='cases__flag' src='${dataCountries[i].countryInfo.flag}' alt='flag'>`;
@@ -183,7 +183,7 @@ function addEvents() {
     deathsTotal.addEventListener('click', () => {
         for (let i = 0; i < countryDeathList.length; i += 1) {
             countryDeathList[i].innerHTML = `<span class='death__number'>
-                                                ${dataCountries[i].deaths}
+                                                ${dataCountries[i].deaths.toLocaleString('ru-RU')}
                                                 <span class='death__end'>deaths</span>
                                                 </span>
                                             <span class='death__country'>${dataCountries[i].country}</span>`;
@@ -193,7 +193,7 @@ function addEvents() {
     deathsNew.addEventListener('click', () => {
         for (let i = 0; i < countryDeathList.length; i += 1) {
             countryDeathList[i].innerHTML = `<span class='death__number'>
-                                                ${dataCountries[i].todayDeaths}
+                                                ${dataCountries[i].todayDeaths.toLocaleString('ru-RU')}
                                                 <span class='death__end'>deaths</span>
                                                 </span>
                                             <span class='death__country'>${dataCountries[i].country}</span>`;
@@ -205,7 +205,7 @@ function addEvents() {
             const relativeFormula = dataCountries[i].deaths
             * (100000 / dataCountries[i].population);
             countryDeathList[i].innerHTML = `<span class='death__number'>
-                                                ${relativeFormula.toFixed(1)}
+                                                ${relativeFormula.toFixed(1).toLocaleString('ru-RU')}
                                                 <span class='death__end'>deaths</span>
                                                 </span>
                                             <span class='death__country'>${dataCountries[i].country}</span>`;
@@ -217,7 +217,7 @@ function addEvents() {
             const relativeFormula = dataCountries[i].todayDeaths
             * (100000 / dataCountries[i].population);
             countryDeathList[i].innerHTML = `<span class='death__number'>
-                                                ${relativeFormula.toFixed(1)}
+                                                ${relativeFormula.toFixed(1).toLocaleString('ru-RU')}
                                                 <span class='death__end'>deaths</span>
                                                 </span>
                                             <span class='death__country'>${dataCountries[i].country}</span>`;
@@ -227,10 +227,10 @@ function addEvents() {
     recoveredTotal.addEventListener('click', () => {
         for (let i = 0; i < countryRecoveredList.length; i += 1) {
             countryRecoveredList[i].innerHTML = `<span class='recovered__number'>
-                                                    ${dataCountries[i].cases}
+                                                    ${dataCountries[i].cases.toLocaleString('ru-RU')}
                                                     <span class='recovered__end'>cases</span>
                                                     <span class='recovered__amount'>
-                                                        ${dataCountries[i].recovered} recovered
+                                                        ${dataCountries[i].recovered.toLocaleString('ru-RU')} recovered
                                                     </span>
                                                 </span>
                                                 <span class='recovered__country'>
@@ -242,10 +242,10 @@ function addEvents() {
     recoveredNew.addEventListener('click', () => {
         for (let i = 0; i < countryRecoveredList.length; i += 1) {
             countryRecoveredList[i].innerHTML = `<span class='recovered__number'>
-                                                    ${dataCountries[i].todayCases}
+                                                    ${dataCountries[i].todayCases.toLocaleString('ru-RU')}
                                                     <span class='recovered__end'>cases</span>
                                                     <span class='recovered__amount'>
-                                                        ${dataCountries[i].todayRecovered} recovered
+                                                        ${dataCountries[i].todayRecovered.toLocaleString('ru-RU')} recovered
                                                     </span>
                                                 </span>
                                                 <span class='recovered__country'>

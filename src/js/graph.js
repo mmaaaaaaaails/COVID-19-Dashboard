@@ -15,7 +15,7 @@ function addGraph() {
         options: {
             title: {
                 display: true,
-                text: 'Number of cases',
+                text: 'Total cases',
             },
             scales: {
                 yAxes: [{

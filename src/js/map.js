@@ -159,7 +159,7 @@ function addMap() {
 
     info.update = function (props) {
         this.div.innerHTML = `<h4>Total Confirmed</h4>${props
-            ? `<b>${props.name}</b><br />${props.density} cases`
+            ? `<b>${props.name}</b><br />${props.density.toLocaleString('ru-RU')} cases`
             : 'Hover over a country'}`;
     };
 
@@ -172,7 +172,7 @@ function addMap() {
         const grades = [0, 1000, 10000, 50000, 200000, 500000, 1000000, 5000000];
         for (let i = 0; i < grades.length; i += 1) {
             div.innerHTML += `<i style="background:${getColor(grades[i] + 1)}"></i>${
-                grades[i]}${grades[i + 1] ? `&ndash;${grades[i + 1]}<br>` : '+'}`;
+                grades[i].toLocaleString('ru-RU')} ${grades[i + 1] ? `&ndash; ${grades[i + 1].toLocaleString('ru-RU')}<br>` : '+'}`;
         }
 
         return div;

@@ -38,7 +38,10 @@ function searchCountry() {
 
 function chooseCountry() {
     cross.addEventListener('click', () => {
-        document.location.reload();
+        universalList.forEach((item) => item.classList.remove('hide'));
+        countryDeathList.forEach((item) => item.classList.remove('hide'));
+        countryRecoveredList.forEach((item) => item.classList.remove('hide'));
+        searchArea.value = '';
     });
 
     searchButton.addEventListener('click', () => {
@@ -56,6 +59,18 @@ function chooseCountry() {
 
     for (let i = 0; i < dataCountries.length; i += 1) {
         universalList[i].addEventListener('click', () => {
+            setProperty();
+            universalList[i].classList.remove('hide');
+            countryDeathList[i].classList.remove('hide');
+            countryRecoveredList[i].classList.remove('hide');
+        });
+        countryDeathList[i].addEventListener('click', () => {
+            setProperty();
+            universalList[i].classList.remove('hide');
+            countryDeathList[i].classList.remove('hide');
+            countryRecoveredList[i].classList.remove('hide');
+        });
+        countryRecoveredList[i].addEventListener('click', () => {
             setProperty();
             universalList[i].classList.remove('hide');
             countryDeathList[i].classList.remove('hide');
