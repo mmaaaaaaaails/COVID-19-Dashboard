@@ -98,7 +98,6 @@ closeModalCross();
 const graphFull = document.querySelector('.graph__full');
 graphFull.addEventListener('click', () => {
     modal.classList.remove('hide');
-    console.log(chart);
 });
 
 export {

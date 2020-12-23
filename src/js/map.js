@@ -36,7 +36,6 @@ function addMap() {
     let marker = L.marker([53.385044, 27.486671], markerOptions).bindPopup('Location');
     marker.addTo(map);
     map.on('click', (e) => {
-        console.log(e);
         if (marker !== null) {
             map.removeLayer(marker);
         }
