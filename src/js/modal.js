@@ -8,7 +8,7 @@ import {
     deathsTable,
 } from './table';
 
-import { addGraph } from './graph';
+import { chart } from './graph';
 
 const casesBlockFull = document.querySelector('.cases__block--full');
 const casesFull = document.querySelector('.cases__full');
@@ -27,10 +27,6 @@ const popupClose = document.createElement('span');
 popupClose.className = 'modal__close';
 popupClose.innerHTML = '&times;';
 popup.append(popupClose);
-
-const chart = document.createElement('canvas');
-chart.id = 'myChart';
-popupContent.append(chart);
 
 const modal = document.querySelector('.modal');
 const modalContent = document.querySelector('.modal__content');
@@ -102,7 +98,6 @@ closeModalCross();
 const graphFull = document.querySelector('.graph__full');
 graphFull.addEventListener('click', () => {
     modal.classList.remove('hide');
-    console.log(addGraph());
 });
 
 export {
