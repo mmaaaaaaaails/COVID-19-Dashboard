@@ -66,3 +66,14 @@
         bottom: 50px;
     }
 }
+
+@media only screen and (min-width: 1024px) {
+    .main {
+        height: 100vh;
+        align-items: center;
+    }
+
+    .cases {
+        height: initial !important;
+    }
+}
